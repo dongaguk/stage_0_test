@@ -1,15 +1,23 @@
+# --- 核心深度学习框架 (针对 CUDA 12.1 优化) ---
+--index-url https://download.pytorch.org/whl/cu121
 torch>=2.0.0
 torchvision>=0.15.0
 
+# --- OpenAI CLIP 核心依赖 ---
 ftfy
 regex
 tqdm
 
+# --- 数据处理与图像操作 ---
 Pillow>=9.0.0
 numpy>=1.21.0
-
-git+https://github.com/openai/CLIP.git
-
-matplotlib
 pandas
+tqdm
+
+# --- 实验监控与工具 ---
+matplotlib
 scikit-learn
+requests  # 用于自动下载 imagenet_class_index.json
+
+# --- 官方 CLIP 库 (直接从 GitHub 安装) ---
+git+https://github.com/openai/CLIP.git
