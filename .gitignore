@@ -3,5 +3,5 @@
 *.pth
 *.bin
 # 忽略模型文件夹（如果有的话）
-/results/
-/dataset/
+results/
+dataset/
