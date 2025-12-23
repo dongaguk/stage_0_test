@@ -36,11 +36,11 @@ def main():
         
         if v_acc > best_acc:
             best_acc = v_acc
-            torch.save(model.state_dict(), "mini_imagenet_best.pt")
+            torch.save(model.state_dict(), "\\results\\mini_imagenet_best.pt")
             print("保存当前最佳模型。")
 
     # 4. 最终测试
-    model.load_state_dict(torch.load("mini_imagenet_best.pt", weights_only=True))
+    model.load_state_dict(torch.load(".\\results\\mini_imagenet_best.pt", weights_only=True))
     _, final_acc = run_epoch(model, test_loader, None, None, DEVICE, is_train=False)
     print(f"\n测试集最终准确率: {final_acc:.4f}")
 

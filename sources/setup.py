@@ -21,11 +21,13 @@ def download_file(url, save_path):
 def setup_mini_imagenet():
     # 1. 定义路径
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    target_data_dir = os.path.join(base_dir, "dataset", "mini_imagenet")
-    json_path = os.path.join(base_dir, "imagenet_class_index.json")
+    target_data_dir = os.path.join(base_dir, "..", "dataset", "mini_imagenet")
+    json_path = os.path.join(base_dir, "..", "imagenet_class_index.json")
+    result_path = os.path.join(base_dir, "..", "results")
     
     # 创建数据集目录
     os.makedirs(target_data_dir, exist_ok=True)
+    os.makedirs(result_path, exist_ok=True)
 
     # 2. 下载 JSON 映射表 (存放在根目录)
     json_url = "https://s3.amazonaws.com/deep-learning-models/image-models/imagenet_class_index.json"
@@ -37,10 +39,9 @@ def setup_mini_imagenet():
 
     # 3. 下载 Mini-ImageNet (此处使用常用的学术镜像链接)
     # 注意：如果此链接失效，建议手动从 Kaggle 下载并将 zip 放入 .\dataset\
-    dataset_url = "https://github.com/renmengye/few-shot-ssl-public/raw/master/data/mini-imagenet.tar.gz" # 示例链接
-    # 备用链接 (Kaggle 版本通常是 zip): https://raw.githubusercontent.com/yaoyao-liu/mini-imagenet-tools/master/data/mini-imagenet.zip
+    dataset_url = "https://github.com/renmengye/few-shot-ssl-public/raw/master/data/mini-imagenet.tar.gz" 
     
-    archive_save_path = os.path.join(base_dir, "dataset", "mini-imagenet.tar.gz")
+    archive_save_path = os.path.join(base_dir,".." ,"dataset", "mini-imagenet.tar.gz")
 
     if not os.listdir(target_data_dir):  # 如果目录为空则下载
         print(f"\n--- 正在下载 Mini-ImageNet 数据集 (约 1GB+) ---")
@@ -61,7 +62,7 @@ def setup_mini_imagenet():
             print("解压完成并已清理压缩包。")
         except Exception as e:
             print(f"下载过程中出错: {e}")
-            print("建议从 Kaggle 手动下载 mini-imagenet.zip 并放入 ./dataset/ 目录后手动解压。")
+            print("建议从 Kaggle 手动下载 mini-imagenet.zip 并放入 ./dataset/mini_imagenet/ 目录后手动解压。")
     else:
         print(f"数据集已存在于: {target_data_dir}")
 
